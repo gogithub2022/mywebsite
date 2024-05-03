@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jupyter
-        image: jupyter/datascience-notebook:x86_64-ubuntu-22.04
+        image: quay.io/jupyter/tensorflow-notebook:latest
         ports:
         - containerPort: 8888
         resources:
