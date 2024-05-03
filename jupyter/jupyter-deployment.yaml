@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-deployment
+  labels:
+    app: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+    spec:
+      containers:
+      - name: jupyter
+        image: jupyter/datascience-notebook:x86_64-ubuntu-22.04
+        ports:
+        - containerPort: 8888
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        # Volume mounts moved inside the container definition
+        volumeMounts:
+        - name: jupyter-data
+          mountPath: /home/jovyan
+      volumes:
+      - name: jupyter-data
+        hostPath:
+          path: /Users/brianzhang/workshop/study/jupyter

@@ -2,12 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jupyter-service
+  labels:
+    app: jupyter
 spec:
   type: LoadBalancer
   selector:
-    app: website
+    app: jupyter
   ports:
-    - port: 85
-      nodePort: 30080
-      protocol: TCP
-      targetPort: 80
+  - protocol: TCP
+    port: 8888
+    targetPort: 8888
+
