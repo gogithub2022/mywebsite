@@ -5,7 +5,7 @@ metadata:
   labels:
     app: website
 spec:
-  replicas: 4
+  replicas: 8
   selector:
     matchLabels:
       app: website
@@ -15,14 +15,14 @@ spec:
         app: website
     spec:
       containers:
-      - name: website
-        image: website:alpine
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: "100m"  # Request 100 millicpu (1/10 of a CPU core)
-            memory: "200Mi"  # Request 200 MiB of memory
-          limits:
-            cpu: "200m"  # Limit to 200 millicpu
-            memory: "400Mi"  # Limit to 400 MiB of memory
+        - name: website
+          image: website:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m # Request 100 millicpu (1/10 of a CPU core)
+              memory: 200Mi # Request 200 MiB of memory
+            limits:
+              cpu: 200m # Limit to 200 millicpu
+              memory: 400Mi # Limit to 400 MiB of memory
